@@ -28,6 +28,9 @@ public struct YPColors {
 
     /// The background color of the library and space between collection view cells.
     public var libraryScreenBackgroundColor: UIColor = .offWhiteOrBlack
+    
+    /// A color for separator between asset view and library view.
+    public var libraryViewSeparatorColor: UIColor = .ypSystemBackground
 
     /// The background color of safe area. For example under the menu items.
     public var safeAreaBackgroundColor: UIColor = .offWhiteOrBlack
