@@ -44,10 +44,20 @@ class YPCropVC: UIViewController {
     }
     
     func setupToolbar() {
-        let cancelButton = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(cancel))
+        let cancelButton: UIBarButtonItem
+        if let icon = YPConfig.icons.cancelButtonIcon {
+            cancelButton = UIBarButtonItem(
+                image: icon,
+                style: .plain,
+                target: self,
+                action: #selector(close))
+        } else {
+            cancelButton = UIBarButtonItem(
+                title: YPConfig.wordings.cancel,
+                style: .plain,
+                target: self,
+                action: #selector(close))
+        }
         cancelButton.tintColor = .ypLabel
         cancelButton.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
         

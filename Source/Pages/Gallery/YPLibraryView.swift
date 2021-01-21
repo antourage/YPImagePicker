@@ -37,8 +37,7 @@ final class YPLibraryView: UIView {
             |line| ~ 1
         )
         
-        let color = YPImagePickerConfiguration.shared.colors.libraryViewSeparatorColor
-        line.backgroundColor = color
+        line.backgroundColor = YPConfig.colors.libraryViewSeparatorColor
         
         setupMaxNumberOfItemsView()
         setupProgressBarView()

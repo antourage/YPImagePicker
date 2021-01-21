@@ -79,11 +79,20 @@ open class YPPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogni
         // Setup of Navigation Bar
         title = YPConfig.wordings.filter
         if isFromSelectionVC {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                                               style: .plain,
-                                                               target: self,
-                                                               action: #selector(cancel))
-            navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+            if let icon = YPConfig.icons.cancelButtonIcon {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    image: icon,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+            } else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    title: YPConfig.wordings.cancel,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+                navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+            }
         }
         setupRightBarButton()
         

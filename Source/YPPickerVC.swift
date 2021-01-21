@@ -197,8 +197,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     func navBarTapped() {
         let vc = YPAlbumVC(albumsManager: albumsManager)
         let navVC = UINavigationController(rootViewController: vc)
-        let color = YPImagePickerConfiguration.shared.colors.tintColor
-        navVC.navigationBar.tintColor = color
+        navVC.navigationBar.tintColor = YPConfig.colors.tintColor
         
         vc.didSelectAlbum = { [weak self] album in
             self?.libraryVC?.setAlbum(album)
@@ -263,10 +262,20 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     func updateUI() {
 		if !YPConfig.hidesCancelButton {
 			// Update Nav Bar state.
-			navigationItem.leftBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(close))
+            if let icon = YPConfig.icons.cancelButtonIcon {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    image: icon,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+            } else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    title: YPConfig.wordings.cancel,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+            }
+
 		}
         switch mode {
         case .library:

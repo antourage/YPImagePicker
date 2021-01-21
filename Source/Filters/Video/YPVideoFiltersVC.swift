@@ -77,11 +77,20 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
         // Navigation bar setup
         title = YPConfig.wordings.trim
         if isFromSelectionVC {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                                               style: .plain,
-                                                               target: self,
-                                                               action: #selector(cancel))
-            navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+            if let icon = YPConfig.icons.cancelButtonIcon {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    image: icon,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+            } else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(
+                    title: YPConfig.wordings.cancel,
+                    style: .plain,
+                    target: self,
+                    action: #selector(close))
+                navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+            }
         }
         setupRightBarButtonItem()
     }

@@ -35,11 +35,20 @@ class YPAlbumVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.cancel,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(close))
-        navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+        if let icon = YPConfig.icons.cancelButtonIcon {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                image: icon,
+                style: .plain,
+                target: self,
+                action: #selector(close))
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: YPConfig.wordings.cancel,
+                style: .plain,
+                target: self,
+                action: #selector(close))
+            navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
+        }
         navigationController?.navigationBar.titleTextAttributes = [.font: YPConfig.fonts.navigationBarTitleFont, .foregroundColor: YPConfig.colors.albumTitleColor]
         navigationController?.navigationBar.barTintColor = YPConfig.colors.albumBarTintColor
         navigationController?.navigationBar.tintColor = YPConfig.colors.albumTintColor
