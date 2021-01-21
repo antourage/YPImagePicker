@@ -82,13 +82,13 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
                     image: icon,
                     style: .plain,
                     target: self,
-                    action: #selector(close))
+                    action: #selector(cancel))
             } else {
                 navigationItem.leftBarButtonItem = UIBarButtonItem(
                     title: YPConfig.wordings.cancel,
                     style: .plain,
                     target: self,
-                    action: #selector(close))
+                    action: #selector(cancel))
                 navigationItem.leftBarButtonItem?.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
             }
         }
@@ -116,10 +116,20 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
     
     func setupRightBarButtonItem() {
         let rightBarButtonTitle = isFromSelectionVC ? YPConfig.wordings.done : YPConfig.wordings.next
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightBarButtonTitle,
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(save))
+        let rightBarButtonIcon = isFromSelectionVC ? YPConfig.icons.doneButtonIcon : YPConfig.icons.nextButtonIcon
+        if let icon = rightBarButtonIcon {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: icon,
+                style: .done,
+                target: self,
+                action: #selector(save))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: rightBarButtonTitle,
+                style: .done,
+                target: self,
+                action: #selector(save))
+        }
         navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
     }

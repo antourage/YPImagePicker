@@ -40,10 +40,20 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         v.collectionView.delegate = self
         
         // Setup navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(done))
+        if let icon = YPConfig.icons.nextButtonIcon {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: icon,
+                style: .done,
+                target: self,
+                action: #selector(done))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: YPConfig.wordings.next,
+                style: .done,
+                target: self,
+                action: #selector(done))
+        }
+        
         navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .disabled)
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)

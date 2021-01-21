@@ -50,13 +50,13 @@ class YPCropVC: UIViewController {
                 image: icon,
                 style: .plain,
                 target: self,
-                action: #selector(close))
+                action: #selector(cancel))
         } else {
             cancelButton = UIBarButtonItem(
                 title: YPConfig.wordings.cancel,
                 style: .plain,
                 target: self,
-                action: #selector(close))
+                action: #selector(cancel))
         }
         cancelButton.tintColor = .ypLabel
         cancelButton.setFont(font: YPConfig.fonts.leftBarButtonFont, forState: .normal)
