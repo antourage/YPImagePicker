@@ -40,6 +40,9 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         v.collectionView.delegate = self
         
         // Setup navigation bar
+        
+        title = YPConfig.wordings.filter
+        
         if let icon = YPConfig.icons.nextButtonIcon {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: icon,
