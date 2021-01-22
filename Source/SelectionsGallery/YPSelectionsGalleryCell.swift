@@ -17,13 +17,14 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
     
     weak var delegate: YPSelectionsGalleryCellDelegate?
     let imageView = UIImageView()
-    let editIcon = UIView()
+    let editIcon = UIImageView()
     let editSquare = UIView()
     let removeButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        let editImage = YPConfig.icons.galleryCellEditIcon
+        editIcon.image = editImage
         sv(
             imageView,
             editIcon,
@@ -36,7 +37,7 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
         editSquare.size(16)
         editSquare.CenterY == editIcon.CenterY
         editSquare.CenterX == editIcon.CenterX
-        
+        editSquare.isHidden = editImage != nil
         removeButton.top(12).trailing(12)
         
         layer.shadowColor = UIColor.black.cgColor
@@ -49,7 +50,7 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
             i.contentMode = .scaleAspectFill
         }
         editIcon.style { v in
-            v.backgroundColor = UIColor.ypSystemBackground
+            v.backgroundColor = editImage == nil ? .ypSystemBackground : .clear
             v.layer.cornerRadius = 16
         }
         editSquare.style { v in
