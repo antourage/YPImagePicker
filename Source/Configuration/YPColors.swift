@@ -52,6 +52,12 @@ public struct YPColors {
 
     /// A color for for bottom buttons not selected text.
     public var bottomMenuItemUnselectedTextColor: UIColor = .ypSecondaryLabel
+    
+    /// A color for for bottom buttons selected text.
+    public var filterItemSelectedTextColor: UIColor = .ypLabel
+
+    /// A color for for bottom buttons not selected text.
+    public var filterItemUnselectedTextColor: UIColor = .ypSecondaryLabel
 
     // MARK: - Trimmer
     
