@@ -43,6 +43,8 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         
         title = YPConfig.wordings.filter
         
+        navigationController?.navigationBar.titleTextAttributes = [.font: YPConfig.fonts.navigationBarTitleFont, .foregroundColor: YPConfig.colors.tintColor]
+        
         if let icon = YPConfig.icons.nextButtonIcon {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: icon,

@@ -20,10 +20,10 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
     let editIcon = UIImageView()
     let editSquare = UIView()
     let removeButton = UIButton()
+    let editImage = YPConfig.icons.galleryCellEditIcon
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let editImage = YPConfig.icons.galleryCellEditIcon
         editIcon.image = editImage
         sv(
             imageView,
@@ -68,7 +68,7 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
     
     func setEditable(_ editable: Bool) {
         self.editIcon.isHidden = !editable
-        self.editSquare.isHidden = !editable
+        self.editSquare.isHidden = !editable && editImage != nil
     }
     
     required public init?(coder aDecoder: NSCoder) {
