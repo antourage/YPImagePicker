@@ -43,8 +43,6 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         
         title = YPConfig.wordings.filter
         
-        navigationController?.navigationBar.titleTextAttributes = [.font: YPConfig.fonts.navigationBarTitleFont, .foregroundColor: YPConfig.colors.tintColor]
-        
         if let icon = YPConfig.icons.nextButtonIcon {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: icon,
@@ -62,7 +60,6 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .disabled)
         navigationItem.rightBarButtonItem?.setFont(font: YPConfig.fonts.rightBarButtonFont, forState: .normal)
-        navigationController?.navigationBar.setTitleFont(font: YPConfig.fonts.navigationBarTitleFont)
         
         YPHelper.changeBackButtonIcon(self)
         YPHelper.changeBackButtonTitle(self)

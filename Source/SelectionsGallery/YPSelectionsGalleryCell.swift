@@ -55,7 +55,7 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
         }
         editSquare.style { v in
             v.layer.borderWidth = 1
-            v.layer.borderColor = UIColor.ypLabel.cgColor
+            v.layer.borderColor = editImage == nil ? UIColor.ypLabel.cgColor : UIColor.clear.cgColor
         }
         removeButton.setImage(YPConfig.icons.removeImage, for: .normal)
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
