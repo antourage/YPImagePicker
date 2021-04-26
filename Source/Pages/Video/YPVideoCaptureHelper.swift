@@ -182,7 +182,7 @@ class YPVideoCaptureHelper: NSObject {
     public func startRecording() {
         
         let outputURL = YPVideoProcessor.makeVideoPathURL(temporaryFolder: true, fileName: "recordedVideoRAW")
-
+        
         checkOrientation { [weak self] orientation in
             guard let strongSelf = self else {
                 return
@@ -227,12 +227,8 @@ class YPVideoCaptureHelper: NSObject {
             let maxDuration =
                 CMTimeMakeWithSeconds(self.videoRecordingTimeLimit, preferredTimescale: timeScale)
             videoOutput.maxRecordedDuration = maxDuration
-            if let sizeLimit = YPConfig.video.recordingSizeLimit {
-                videoOutput.maxRecordedFileSize = sizeLimit
-            }
-            videoOutput.minFreeDiskSpaceLimit = YPConfig.video.minFreeDiskSpaceLimit
-            if YPConfig.video.fileType == .mp4,
-               YPConfig.video.recordingSizeLimit != nil {
+            videoOutput.minFreeDiskSpaceLimit = 1024 * 1024
+            if YPConfig.video.fileType == .mp4 {
                 videoOutput.movieFragmentInterval = .invalid // Allows audio for MP4s over 10 seconds.
             }
             if session.canAddOutput(videoOutput) {
@@ -249,13 +245,7 @@ class YPVideoCaptureHelper: NSObject {
     @objc
     func tick() {
         let timeElapsed = Date().timeIntervalSince(dateVideoStarted)
-        var progress: Float
-        if let recordingSizeLimit = YPConfig.video.recordingSizeLimit {
-            progress = Float(videoOutput.recordedFileSize) / Float(recordingSizeLimit)
-        } else {
-            progress = Float(timeElapsed) / Float(videoRecordingTimeLimit)
-        }
-        // VideoOutput configuration is responsible for stopping the recording. Not here.
+        let progress: Float = Float(timeElapsed) / Float(videoRecordingTimeLimit)
         DispatchQueue.main.async {
             self.videoRecordingProgress?(progress, timeElapsed)
         }
@@ -317,10 +307,6 @@ extension YPVideoCaptureHelper: AVCaptureFileOutputRecordingDelegate {
                            didFinishRecordingTo outputFileURL: URL,
                            from connections: [AVCaptureConnection],
                            error: Error?) {
-        if let error = error {
-            print(error)
-        }
-
         if YPConfig.onlySquareImagesFromCamera {
             YPVideoProcessor.cropToSquare(filePath: outputFileURL) { [weak self] url in
                 guard let _self = self, let u = url else { return }
