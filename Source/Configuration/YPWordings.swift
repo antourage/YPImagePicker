@@ -10,8 +10,7 @@ import Foundation
 
 public struct YPWordings {
     
-    public var libraryPermissionPopup = PermissionPopup()
-    public var cameraPermissionPopup = PermissionPopup()
+    public var permissionPopup = PermissionPopup()
     public var videoDurationPopup = VideoDurationPopup()
 
     public struct PermissionPopup {
