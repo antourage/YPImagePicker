@@ -142,6 +142,7 @@ extension YPSelectionsGalleryVC: UICollectionViewDelegate {
         if let mediaFilterVC = mediaFilterVC as? UIViewController {
             let navVC = UINavigationController(rootViewController: mediaFilterVC)
             navVC.modalPresentationStyle = .fullScreen // Force .fullScreen as iOS 13 now shows modals as cards by default.
+            navVC.navigationBar.backgroundColor = YPConfig.colors.defaultNavigationBarColor
             navVC.navigationBar.isTranslucent = false
             present(navVC, animated: true, completion: nil)
         }
