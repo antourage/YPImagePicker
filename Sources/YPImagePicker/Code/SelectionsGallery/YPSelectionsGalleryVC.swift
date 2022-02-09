@@ -144,13 +144,11 @@ extension YPSelectionsGalleryVC: UICollectionViewDelegate {
             navVC.modalPresentationStyle = .fullScreen // Force .fullScreen as iOS 13 now shows modals as cards by default.
 
             if #available(iOS 13.0, *) {
-                let navBarAppearance = UINavigationBarAppearance()
-                navBarAppearance.configureWithOpaqueBackground()
-                navBarAppearance.backgroundColor = YPConfig.colors.defaultNavigationBarColor
-                navVC.navigationBar.standardAppearance = navBarAppearance
-                navVC.navigationBar.scrollEdgeAppearance = navBarAppearance
+                guard let navigationController = navigationController else { return }
+
+                navVC.navigationBar.standardAppearance = navigationController?.navigationBar.standardAppearance
+                navVC.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.scrollEdgeAppearance
             } else {
-                navVC.navigationBar.backgroundColor = YPConfig.colors.defaultNavigationBarColor
                 navVC.navigationBar.isTranslucent = false
             }
 
