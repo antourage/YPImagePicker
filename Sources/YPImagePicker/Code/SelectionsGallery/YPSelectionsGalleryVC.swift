@@ -146,8 +146,8 @@ extension YPSelectionsGalleryVC: UICollectionViewDelegate {
             if #available(iOS 13.0, *) {
                 guard let navigationController = navigationController else { return }
 
-                navVC.navigationBar.standardAppearance = navigationController?.navigationBar.standardAppearance
-                navVC.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.scrollEdgeAppearance
+                navVC.navigationBar.standardAppearance = navigationController.navigationBar.standardAppearance
+                navVC.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.scrollEdgeAppearance
             } else {
                 navVC.navigationBar.isTranslucent = false
             }
